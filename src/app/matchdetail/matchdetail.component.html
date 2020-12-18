@@ -1,0 +1,225 @@
+<div class="heading"
+    fxLayout="row" *ngIf="match"
+    fxLayout.sm="column" 
+    fxLayout.xs="column"  
+    fxLayoutAlign.xs="start center"
+    fxLayoutAlign.sm="start center" 
+    fxLayoutAlign.gt-sm="center center" >
+    <div fxFlex.Align="center">
+      <h1 style="font-size:150%;">{{match.team1+" Vs"}} {{match.team2+" ,"}} {{match.tournament | uppercase }}</h1>
+    </div>
+</div>
+<div>
+  <h2 style="color: red;padding-left: 50px;">{{match.status}}</h2>
+  <hr>
+</div>
+
+ <div 
+    fxLayout=column
+    fxLayoutGap="10px" >
+
+    <div fxFlex class="score">
+      <mat-grid-list  cols="2" rowHeight="80px" >
+        <mat-grid-tile (click)="onSelect1(match.team1)" style="background: lightblue;">{{match.team1+" - "}}{{match.t1runs+"/"}}{{match.t1wickets}}{{"("+match.t2overs+")"}}</mat-grid-tile>
+        <mat-grid-tile (click)="onSelect2(match.team2)" style="background: lightblue;">{{match.team2+" - "}}{{match.t2runs+"/"}}{{match.t2wickets}}{{"("+match.t1overs+")"}}</mat-grid-tile>
+      </mat-grid-list>
+    </div>
+
+    <div fxLayout=column
+    fxLayoutGap="10px" *ngIf="selectedteam1" >
+
+      <div fxFlex class="bigscreen">
+        <mat-grid-list cols="1" rowHeight="40px">
+          <mat-grid-tile style="background: blue;"><span id="h1">{{match.team1+" - "}}{{match.t1runs+"/"}}{{match.t1wickets}}{{"("+match.t2overs+")"}}</span></mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list [cols]="breakpoint"  rowHeight="60px"  (window:resize)="onResize($event)">
+          <mat-grid-tile [colspan]="point"  (window:resize)="onResize($event)" style="background:grey;">Player</mat-grid-tile>
+          <mat-grid-tile style="background:grey;" >R<span id="ball">(B)</span></mat-grid-tile>
+          <mat-grid-tile style="background:grey;">4s</mat-grid-tile>
+          <mat-grid-tile style="background:grey;">6s</mat-grid-tile>
+          <mat-grid-tile style="background:grey;">SR</mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list cols="1" rowHeight="120px">
+          <mat-grid-tile
+          *ngFor = "let m of match.t1batsmans">
+            <mat-grid-tile-header>
+              <span id="n1">{{m.name}}</span>
+              <span id="n2">{{m.runs}}</span>
+              <span id="n3">{{"("+m.ballsfaced+")"}}</span>
+              <span id="n4">{{m.fours}}</span>
+              <span id="n5">{{m.sixes}}</span>
+              <span id="n6">{{m.strikerate}}</span>
+            </mat-grid-tile-header> 
+              <p style="position: absolute;left: 20px;">{{m.playerstatus}}</p>  
+          </mat-grid-tile>
+         </mat-grid-list>
+      </div>
+  
+      <div fxFlex style="padding-left: 30px;">
+        <hr>
+        <strong>Extras :</strong><br>
+        <p>{{"("+"nb "+match.t2_extras.nb+", "}}{{"b "+match.t2_extras.b+", "}}{{"penalty "+match.t2_extras.penalty+", "}}{{"w "+match.t2_extras.w+", "}}{{"lb "+match.t2_extras.lb+")"}}</p>
+        <hr>
+        <strong>{{"Total :"+match.t1runs}}</strong><br>
+        <p>{{"( "+match.t2overs+" ovrs"+", "}}{{match.t1wickets+" Wkts"+")"}}</p>
+      </div>
+  
+      <div fxFlex class="bigscreen">
+        <mat-grid-list cols="1" rowHeight="40px" (window:resize)="onResize($event)">
+        <mat-grid-tile style="background: blue;"><span id="h2">Bowling</span></mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list [cols]="breakpoint" rowHeight="40px">
+        <mat-grid-tile [colspan]="point" (window:resize)="onResize($event)">Bowler</mat-grid-tile>
+        <mat-grid-tile>O</mat-grid-tile>
+        <mat-grid-tile>M</mat-grid-tile>
+        <mat-grid-tile>R</mat-grid-tile>
+        <mat-grid-tile>W</mat-grid-tile>
+        </mat-grid-list>
+  
+        <div>
+          <mat-grid-list [cols]="breakpoint" rowHeight="40px" *ngFor="let n of match.t2bowlers" (window:resize)="onResize($event)">
+             <mat-grid-tile [colspan]="point" (window:resize)="onResize($event)" style="background: grey; color: floralwhite;">{{n.name}}</mat-grid-tile>
+             <mat-grid-tile style="background: grey; color: floralwhite;">{{n.overs}}</mat-grid-tile>
+             <mat-grid-tile style="background: grey; color: floralwhite;">{{n.maidens}}</mat-grid-tile>
+             <mat-grid-tile style="background: grey; color: floralwhite;">{{n.runsfaced}}</mat-grid-tile>
+             <mat-grid-tile style="background: grey; color: floralwhite;">{{n.wickets}}</mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
+  
+      <div fxFlex class="bigscreen">
+        <mat-grid-list cols="1" rowHeight="40px" (window:resize)="onResize($event)">
+          <mat-grid-tile style="background: blue;"><span id="h2">Fall of Wickets</span></mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list cols="4" rowHeight="40px">
+          <mat-grid-tile>Wkt</mat-grid-tile>
+          <mat-grid-tile>Runs</mat-grid-tile>
+          <mat-grid-tile>Ovrs</mat-grid-tile>
+          <mat-grid-tile>Player</mat-grid-tile>
+        </mat-grid-list>
+        
+        <div>
+          <mat-grid-list cols="4" rowHeight="40px" *ngFor="let i of match.t1_fall_wc">
+            <mat-grid-tile style="background: grey;color: floralwhite;">{{i.wc_no}}</mat-grid-tile>
+            <mat-grid-tile style="background: grey;color: floralwhite;">{{i.runs}}</mat-grid-tile>
+            <mat-grid-tile style="background: grey;color: floralwhite;">{{i.overs}}</mat-grid-tile>
+            <mat-grid-tile style="background: grey;color: floralwhite;">{{i.player_name}}</mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout=column
+    fxLayoutGap="10px" *ngIf="selectedteam2">
+
+      <div fxFlex class="bigscreen">
+        <mat-grid-list cols="1" rowHeight="40px">
+          <mat-grid-tile style="background: blue;"><span id="h1">{{match.team2+" - "}}{{match.t2runs+"/"}}{{match.t2wickets}}{{"("+match.t1overs+")"}}</span></mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list [cols]="breakpoint"  rowHeight="60px"  (window:resize)="onResize($event)">
+          <mat-grid-tile [colspan]="point"  (window:resize)="onResize($event)" style="background:grey;">Player</mat-grid-tile>
+          <mat-grid-tile style="background:grey;" >R<span id="ball">(B)</span></mat-grid-tile>
+          <mat-grid-tile style="background:grey;">4s</mat-grid-tile>
+          <mat-grid-tile style="background:grey;">6s</mat-grid-tile>
+          <mat-grid-tile style="background:grey;">SR</mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list cols="1" rowHeight="120px">
+          <mat-grid-tile
+          *ngFor = "let m of match.t2batsmans">
+            <mat-grid-tile-header>
+              <span id="n1">{{m.name}}</span>
+              <span id="n2">{{m.runs}}</span>
+              <span id="n3">{{"("+m.ballsfaced+")"}}</span>
+              <span id="n4">{{m.fours}}</span>
+              <span id="n5">{{m.sixes}}</span>
+              <span id="n6">{{m.strikerate}}</span>
+            </mat-grid-tile-header> 
+              <p style="position: absolute;left: 20px;">{{m.playerstatus}}</p>  
+          </mat-grid-tile>
+         </mat-grid-list>
+      </div>
+  
+      <div fxFlex style="padding-left: 30px;">
+        <hr>
+        <strong>Extras :</strong><br>
+        <p>{{"("+"nb "+match.t1_extras.nb+", "}}{{"b "+match.t1_extras.b+", "}}{{"penalty "+match.t1_extras.penalty+", "}}{{"w "+match.t1_extras.w+", "}}{{"lb "+match.t1_extras.lb+")"}}</p>
+        <hr>
+        <strong>{{"Total :"+match.t2runs}}</strong><br>
+        <p>{{"( "+match.t1overs+" ovrs"+", "}}{{match.t2wickets+" Wkts"+")"}}</p>
+      </div>
+  
+      <div fxFlex class="bigscreen">
+        <mat-grid-list cols="1" rowHeight="40px" (window:resize)="onResize($event)">
+        <mat-grid-tile style="background: blue;"><span id="h2">Bowling</span></mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list [cols]="breakpoint" rowHeight="40px">
+        <mat-grid-tile [colspan]="point" (window:resize)="onResize($event)">Bowler</mat-grid-tile>
+        <mat-grid-tile>O</mat-grid-tile>
+        <mat-grid-tile>M</mat-grid-tile>
+        <mat-grid-tile>R</mat-grid-tile>
+        <mat-grid-tile>W</mat-grid-tile>
+        </mat-grid-list>
+  
+        <div>
+          <mat-grid-list [cols]="breakpoint" rowHeight="40px" *ngFor="let n of match.t1bowlers" (window:resize)="onResize($event)">
+             <mat-grid-tile [colspan]="point" (window:resize)="onResize($event)" style="background: grey; color: floralwhite;">{{n.name}}</mat-grid-tile>
+             <mat-grid-tile style="background: grey; color: floralwhite;">{{n.overs}}</mat-grid-tile>
+             <mat-grid-tile style="background: grey; color: floralwhite;">{{n.maidens}}</mat-grid-tile>
+             <mat-grid-tile style="background: grey; color: floralwhite;">{{n.runsfaced}}</mat-grid-tile>
+             <mat-grid-tile style="background: grey; color: floralwhite;">{{n.wickets}}</mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
+  
+      <div fxFlex class="bigscreen">
+        <mat-grid-list cols="1" rowHeight="40px" (window:resize)="onResize($event)">
+          <mat-grid-tile style="background: blue;"><span id="h2">Fall of Wickets</span></mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list cols="4" rowHeight="40px">
+          <mat-grid-tile>Wkt</mat-grid-tile>
+          <mat-grid-tile>Runs</mat-grid-tile>
+          <mat-grid-tile>Ovrs</mat-grid-tile>
+          <mat-grid-tile>Player</mat-grid-tile>
+        </mat-grid-list>
+        
+        <div>
+          <mat-grid-list cols="4" rowHeight="40px" *ngFor="let i of match.t2_fall_wc">
+            <mat-grid-tile style="background: grey;color: floralwhite;">{{i.wc_no}}</mat-grid-tile>
+            <mat-grid-tile style="background: grey;color: floralwhite;">{{i.runs}}</mat-grid-tile>
+            <mat-grid-tile style="background: grey;color: floralwhite;">{{i.overs}}</mat-grid-tile>
+            <mat-grid-tile style="background: grey;color: floralwhite;">{{i.player_name}}</mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
+    </div>
+    
+   <div fxFlex fxLayoutAlign="center" class="bigscreen">
+    <button mat-button class="btn" (click)="goBack()">BACK</button>
+   </div>
+ </div>
+
+ <div fxLayout="column" class="bigscreen">
+  <div fxFlex style="padding-top: 10px;">
+    <mat-grid-list cols="1" rowHeight="40px">
+      <mat-grid-tile style="background: blue;"><span id="h2">Match Info</span></mat-grid-tile>
+    </mat-grid-list>
+    <h3 id="des">Match :</h3>
+    <p>{{match.team1+" Vs "}}{{match.team2+", "}}{{match.tournament}}</p><hr>
+    <h3 id="des">Date :</h3>
+    <p>{{match.date}}</p><hr>
+    <h3 id="des">Time :</h3>
+    <p>{{match.time}}</p><hr>
+    <h3 id="des">Toss :</h3>
+    <p>{{match.toss}}</p><hr>
+    <h3 id="des">Venue :</h3>
+    <p>{{match.place}}</p><hr>
+    <h3 id="des">Umpires :</h3>
+    <p>{{match.umpires}}</p><hr>
+    <h3 id="des">{{match.team1+" playing :"}}</h3>
+    <p>{{match.t1_11.captain+" (c)"}}{{", "+match.t1_11.n1}}{{", "+match.t1_11.n2}}{{", "+match.t1_11.n3}}{{", "+match.t1_11.n4}}{{", "+match.t1_11.n5}}{{", "+match.t1_11.n6}}{{", "+match.t1_11.n7}}{{", "+match.t1_11.n8}}{{", "+match.t1_11.n9}}{{", "+match.t1_11.n10}}</p><hr>
+    <h3 id="des">{{match.team2+" playing :"}}</h3>
+    <p>{{match.t2_11.captain+" (c)"}}{{", "+match.t2_11.n1}}{{", "+match.t2_11.n2}}{{", "+match.t2_11.n3}}{{", "+match.t2_11.n4}}{{", "+match.t2_11.n5}}{{", "+match.t2_11.n6}}{{", "+match.t2_11.n7}}{{", "+match.t2_11.n8}}{{", "+match.t2_11.n9}}{{", "+match.t2_11.n10}}</p><hr>
+  </div>
+ </div>
+ 
+ 

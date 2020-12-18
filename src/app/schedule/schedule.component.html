@@ -1,0 +1,21 @@
+<div fxLayout="column" fxLayoutGap="10px" class="container">
+  <div fxFlex fxLayoutAlign="center">
+     <h2 class="heading"><em>Upcoming Matches</em> !!</h2>
+  </div>
+  <div fxFlex>
+    <mat-grid-list style="background: blue;color: floralwhite;" cols="6" rowHeight="40px">
+      <mat-grid-tile>S.R</mat-grid-tile>
+      <mat-grid-tile colspan="2">Match</mat-grid-tile>
+      <mat-grid-tile colspan="2">Tournament</mat-grid-tile>
+      <mat-grid-tile>Date</mat-grid-tile>
+    </mat-grid-list>
+    <div *ngFor="let match of matches">
+      <mat-grid-list *ngIf="match.status=='upcoming'" style="background: grey;" cols="6" rowHeight="60px">
+        <mat-grid-tile>{{match.id}}</mat-grid-tile>
+        <mat-grid-tile colspan="2">{{match.team1}} {{"Vs"}} {{match.team2}}</mat-grid-tile>
+        <mat-grid-tile colspan="2">{{match.tournament}}</mat-grid-tile>
+        <mat-grid-tile>{{match.date}}</mat-grid-tile>
+      </mat-grid-list>
+    </div> 
+  </div>
+</div>

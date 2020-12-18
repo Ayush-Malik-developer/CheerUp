@@ -1,0 +1,21 @@
+<div class="container"
+  fxLayout="column"
+  fxLayoutGap="10px">
+
+  <div fxFlex class="Content">
+    <mat-nav-list >
+      <div *ngFor="let match of matches">
+        <mat-list-item *ngIf="conDition(match.status)"  [routerLink]="['/matchdetail',match.id]">
+          <img matListAvatar src={{match.image}} >
+          <h1 matLine> {{match.team1}} {{"Vs"}} {{match.team2}} {{","}} {{match.place}}</h1>
+          <p matLine>{{match.tournament}}</p>
+          <br matLine>
+          <p matLine style="color: blue;">{{match.status}}</p>
+          <hr matLine>
+        </mat-list-item>
+      </div>
+    </mat-nav-list>
+  </div>
+
+ 
+</div>     

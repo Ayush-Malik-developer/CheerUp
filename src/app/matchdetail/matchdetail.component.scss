@@ -1,0 +1,109 @@
+.heading {
+    background-color: green;
+    color: floralwhite;
+    min-height: 60px;
+}
+
+@media only screen and (max-width : 700px) {
+    #n1 {
+        font-size: small;
+        position: relative;
+        right: 15px;
+    }
+    #n2 {
+        position: relative;
+        left: 5%;
+   }
+   #n3 {
+     position: relative;
+     left: 6%;
+    }
+    #n4 {
+     position: relative;
+     left: 18%;
+     }
+       #n5 {
+         position: relative;
+         left: 32%;
+     }
+      #n6 {
+         position: relative;
+         left: 40%;
+     }
+
+     #h2 {
+        color: floralwhite;
+        position: absolute;
+        left : 30px;
+    }
+}
+
+    @media only screen and (min-width: 701px) {
+        .score {
+            padding-left:30px;padding-right:400px;
+        }
+        
+        .bigscreen {
+            padding-right: 160px;
+            padding-left: 30px;
+        }
+
+        #h2 {
+            color: floralwhite;
+            position: absolute;
+            left : 70px;
+        }
+       
+    }
+
+
+    #h1 {
+        color: floralwhite;
+        position: absolute;
+        left: 40px;
+    }
+
+
+    @media only screen and (min-width: 701px) {
+       #n2 {
+           position: absolute;
+           right: 70%;
+      }
+      #n3 {
+        position: absolute;
+        right: 65%;
+       }
+       #n4 {
+        position: absolute;
+        right: 50%;
+        }
+          #n5 {
+            position: absolute;
+            right: 30%;
+        }
+         #n6 {
+            position: absolute;
+            right: 10%;
+        }
+
+        #ball {
+            position: relative;
+            left : 10px;
+        }
+    }
+
+    #des {
+        color: blue;
+    }
+
+    .btn {
+        color: floralwhite;
+        background: red;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+   
+
+
+   
