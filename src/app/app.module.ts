@@ -19,9 +19,8 @@ import { TournamentsComponent } from './tournaments/tournaments.component';
 import { ContactComponent } from './contact/contact.component';
 
 import { MatchService } from './services/match.service';
-
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { ScoreComponent } from './score/score.component';
+import { TournScheduleComponent } from './tourn-schedule/tourn-schedule.component';
 
 
 @NgModule({
@@ -34,7 +33,7 @@ import { ScoreComponent } from './score/score.component';
     ScheduleComponent,
     TournamentsComponent,
     ContactComponent,
-    ScoreComponent
+    TournScheduleComponent,
   ],
   imports: [
     BrowserModule,

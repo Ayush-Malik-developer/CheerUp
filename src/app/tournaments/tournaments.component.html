@@ -1,3 +1,55 @@
-<p>
-  tournaments works!
-</p>
+<div class="container"
+     fxLayout="column"
+     fxLayoutGap="10px">
+    
+     <div fxFlex fxLayoutAlign="center">
+       <h2 class="heading"><em>Ongoing Tournaments</em> !!</h2>
+     </div>
+
+     <div fxFlex >
+        <mat-grid-list cols="2" rowHeight="140px" gutterSize="40px">
+             <div *ngFor="let t of tournaments">
+               <mat-grid-tile *ngIf="t.status=='Ongoing'" [routerLink]="['/tournament_schedule',t.id]">
+                  <mat-grid-tile-header style="background: hotpink;" fxLayoutAlign="center center">{{t.name | uppercase}}</mat-grid-tile-header>
+                  <h4 style="z-index: 2;">{{"Host : "+t.host}}</h4>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <h4 style="z-index: 2;">{{"Type : "+t.type}}</h4>
+                  <mat-grid-tile-footer  fxLayoutAlign="center center">{{t.start_date}}</mat-grid-tile-footer>
+               </mat-grid-tile>
+             </div>  
+        </mat-grid-list>
+     </div>
+
+     <div fxFlex fxLayoutAlign="center">
+          <h2 class="heading"><em>Upcoming Tournaments</em> !!</h2>
+     </div>
+
+     <div fxFlex >
+          <mat-grid-list cols="2" rowHeight="140px" gutterSize="40px">
+               <div *ngFor="let t of tournaments">
+                 <mat-grid-tile *ngIf="t.status=='Upcoming'" [routerLink]="['/tournament_schedule',t.id]">
+                    <mat-grid-tile-header style="background: hotpink;" fxLayoutAlign="center center">{{t.name | uppercase}}</mat-grid-tile-header>
+                    <h4 style="z-index: 2;">{{"Host : "+t.host}}</h4>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h4 style="z-index: 2;">{{"Type : "+t.type}}</h4>
+                    <mat-grid-tile-footer  fxLayoutAlign="center center">{{t.start_date}}</mat-grid-tile-footer>
+                 </mat-grid-tile>
+               </div>  
+          </mat-grid-list>
+     </div>
+
+       <div fxFlex fxLayoutAlign="center">
+          <h2 class="heading"><em>Past Tournaments</em> !!</h2>
+       </div>
+
+     <div fxFlex >
+          <mat-grid-list cols="2" rowHeight="140px" gutterSize="40px">
+               <div *ngFor="let t of tournaments">
+                 <mat-grid-tile *ngIf="t.status=='Over'" [routerLink]="['/tournament_schedule',t.id]">
+                    <mat-grid-tile-header style="background: hotpink;" fxLayoutAlign="center center">{{t.name | uppercase}}</mat-grid-tile-header>
+                    <h4 style="z-index: 2;">{{"Host : "+t.host}}</h4>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <h4 style="z-index: 2;">{{"Type : "+t.type}}</h4>
+                    <mat-grid-tile-footer  fxLayoutAlign="center center">{{t.start_date}}</mat-grid-tile-footer>
+                 </mat-grid-tile>
+               </div>  
+          </mat-grid-list>
+     </div>
+</div>

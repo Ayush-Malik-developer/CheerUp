@@ -1,0 +1,29 @@
+<div fxLayout="column"
+     fxLayoutGap="10px"
+     class="container">
+
+    <div fxFlex fxLayoutAlign="center">
+      <h2 style="color: floralwhite;background: blue;"><em>Tournament Schedule</em> !!</h2>
+    </div>
+
+    <div fxFlex>
+      <mat-nav-list>
+        <div *ngFor="let s of t_ment.schedule">
+         <mat-list-item [routerLink]="['/matchdetail',s.match_id]">
+           <img matListAvatar src="/assets/images/avatar.jpg">
+           <h3 matLine><span style="background: blue;color: floralwhite;" fxLayoutAlign="center">{{"MATCH : "+s.match_id}}</span></h3>
+           <br matLine>
+           <p matLine>{{s.t1+" Vs "}}{{s.t2}}</p>
+           <br matLine>
+           <p matLine>{{"On : "+s.strtdate}}</p>
+           <hr matLine>
+         </mat-list-item>
+        </div>
+      </mat-nav-list>
+    </div>
+
+    <div fxFlex fxLayoutAlign="center">
+      <button mat-button class="btn" (click)="goBack()">BACK</button>
+    </div>
+
+</div>

@@ -5,6 +5,7 @@ import { MatchdetailComponent } from '../matchdetail/matchdetail.component';
 import { ScheduleComponent } from '../schedule/schedule.component';
 import { TournamentsComponent } from '../tournaments/tournaments.component';
 import { ContactComponent } from '../contact/contact.component';
+import { TournScheduleComponent } from '../tourn-schedule/tourn-schedule.component';
 
 export const routes : Routes = [
     {path : 'home' , component : HomeComponent},
@@ -12,5 +13,6 @@ export const routes : Routes = [
     {path : 'tournaments', component : TournamentsComponent},
     {path : 'contact', component : ContactComponent},
     {path : 'matchdetail/:id', component : MatchdetailComponent},
+    {path : 'tournament_schedule/:id', component : TournScheduleComponent},
     {path : '', redirectTo : '/home', pathMatch: 'full'}
 ];

@@ -7,7 +7,7 @@
       <div *ngFor="let match of matches">
         <mat-list-item *ngIf="conDition(match.status)"  [routerLink]="['/matchdetail',match.id]">
           <img matListAvatar src={{match.image}} >
-          <h1 matLine> {{match.team1}} {{"Vs"}} {{match.team2}} {{","}} {{match.place}}</h1>
+          <h1 matLine> {{match.team1 | uppercase}} {{"Vs"}} {{match.team2 | uppercase}} {{","}} {{match.place | uppercase}}</h1>
           <p matLine>{{match.tournament}}</p>
           <br matLine>
           <p matLine style="color: blue;">{{match.status}}</p>
