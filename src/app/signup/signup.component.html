@@ -1,0 +1,59 @@
+<mat-toolbar style="background: lightblue;text-decoration-style: solid;">
+  Sign Up
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close style="background: blue;color: floralwhite;">&times;</button>
+</mat-toolbar>
+
+<form novalidate (ngSubmit)="onSubmit()" #sform="ngForm" [formGroup]="signupform">
+
+  <mat-dialog-content>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Firstname" type="text" formControlName="firstname" name="firstname" required>
+        <mat-error *ngIf="signupform.get('firstname').hasError('required') && signupform.get('firstname').touched">
+          Firstname is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Lastname" type="text" formControlName="lastname" name="lastname"  required>
+        <mat-error *ngIf="signupform.get('lastname').hasError('required') && signupform.get('lastname').touched">
+          Lastname is required
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <mat-form-field>
+      <input email matInput placeholder="Email" type="email" formControlName="email" name="email"  required>
+      <mat-error *ngIf="signupform.get('email').hasError('required') && signupform.get('email').touched">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="signupform.get('email').hasError('email') && signupform.get('email').touched">
+        Email is invalid
+      </mat-error>
+    </mat-form-field>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" formControlName="password" name="password" required>
+        <mat-error *ngIf="signupform.get('password').hasError('required') && signupform.get('password').touched">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Retype Password" type="password" formControlName="confirmpassword" name="confirmpassword" required>
+        <mat-error *ngIf="signupform.get('confirmpassword').hasError('required') && signupform.get('confirmpassword').touched">
+          Confirm password is required
+        </mat-error>
+        <mat-error *ngIf="signupform.get('confirmpassword').hasError('mustMatch') && signupform.get('confirmpassword').touched">
+          Passwords do not match
+        </mat-error>
+      </mat-form-field>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button type="submit" mat-button class="background-primary text-floral-white" 
+    [disabled]="sform.invalid || signupform.get('confirmpassword').hasError('mustMatch') || signupform.get('confirmpassword').hasError('required') || signupform.get('password').hasError('required')">
+    Register
+  </button>
+  </mat-dialog-actions>
+</form>

@@ -2,6 +2,17 @@
   fxLayout="column"
   fxLayoutGap="10px">
 
+  <div fxFlex fxLayoutAlign="center center">
+    <mat-card style="background: lightyellow;">
+      <mat-card-content>
+        <h2> <strong>Want to host your tournament ?</strong></h2>
+        <mat-card-actions fxLayoutAlign="center center">
+          <button mat-button (click)="openLoginForm()" style="background: tomato; color: floralwhite;">YES</button>
+        </mat-card-actions>
+      </mat-card-content>  
+    </mat-card>
+  </div>
+
   <div fxFlex class="Content">
     <mat-nav-list >
       <div *ngFor="let match of matches">
@@ -16,6 +27,5 @@
       </div>
     </mat-nav-list>
   </div>
-
  
 </div>     

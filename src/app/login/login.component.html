@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+  Login
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close>&times;</button>
+</mat-toolbar>
+
+
+<form novalidate (ngSubmit)="onSubmit()" #loginform="ngForm">
+
+  <mat-dialog-content>
+    <p>
+      <mat-form-field>
+        <input email matInput placeholder="Email" type="email" [(ngModel)]="user.email" name="email" #email="ngModel" required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+        <mat-error *ngIf="email.errors?.required">Email is required</mat-error>
+        <mat-error *ngIf="email.errors?.pattern">Email is invalid</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required>
+        <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
+      </mat-form-field>
+      <mat-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginform.form.invalid">Login</button>
+  </mat-dialog-actions>
+  <br>
+  <h3><span style="color: blue;" fxLayoutAlign="center">New User ?</span></h3>
+  <mat-dialog-actions fxLayoutAlign="center">
+    <button mat-button mat-dialog-close class="background-primary text-floral-white" (click)="openSignupForm()">Sign Up</button>
+  </mat-dialog-actions>
+</form>
