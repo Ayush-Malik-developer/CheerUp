@@ -1,12 +1,35 @@
-<mat-toolbar color="primary">
-  <a routerLink='/home'><span><img src="/assets/images/logo.jpg" height=30 width=41></span></a>
-  <a mat-button routerLink='/home' routerLinkActive='active'><span class="fa fa-home fa-lg"></span>Live Matches</a>
-  <a mat-button routerLink='/schedule' routerLinkActive='active'><span class="fa fa-info fa-lg"></span>Schedule</a>
-  <a mat-button routerLink='/tournaments' routerLinkActive='active'><span class="fa fa-list fa-lg"></span>Tournaments</a>
-  <a mat-button routerLink='/contact' routerLinkActive='active' ><span class="fa fa-address-card fa-lg"></span>Contact</a>
-  <span class="flex-spacer"></span>
-  <a mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg">Login</span></a>
-</mat-toolbar>
+<div fxLayout="row" >
+  <div fxFlex *ngIf="point==2" (window:resize)="onResize($event)">
+    <mat-toolbar color="primary">
+      <a routerLink='/home'><span><img src="/assets/images/logo.jpg" height=30 width=41></span></a>
+      <a mat-button routerLink='/home' routerLinkActive='active'><span class="fa fa-home fa-lg"></span>Live Matches</a>
+      <a mat-button routerLink='/schedule' routerLinkActive='active'><span class="fa fa-info fa-lg"></span>Schedule</a>
+      <a mat-button routerLink='/tournaments' routerLinkActive='active'><span class="fa fa-list fa-lg"></span>Tournaments</a>
+      <a mat-button routerLink='/contact' routerLinkActive='active' ><span class="fa fa-address-card fa-lg"></span>Contact</a>
+      <span class="flex-spacer"></span>
+      <a mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg">Login</span></a>
+    </mat-toolbar>
+  </div>
+</div>
+
+<div fxLayout="column">
+  <div fxFlex *ngIf="point==1" (window:resize)="onResize($event)">
+    <mat-toolbar color="primary">
+      <a routerLink='/home'><span><img src="/assets/images/logo.jpg" height=30 width=41></span></a>
+      <a mat-button routerLink='/home' routerLinkActive='active'><span class="fa fa-home fa-lg"></span>Live Matches</a>
+      <a mat-button routerLink='/schedule' routerLinkActive='active'><span class="fa fa-info fa-lg"></span>Schedule</a>
+    </mat-toolbar>
+  </div>
+  <div fxFlex *ngIf="point==1" (window:resize)="onResize($event)">
+    <mat-toolbar color="primary">
+      <a mat-button routerLink='/tournaments' routerLinkActive='active'><span class="fa fa-list fa-lg"></span>Tournaments</a>
+      <a mat-button routerLink='/contact' routerLinkActive='active' ><span class="fa fa-address-card fa-lg"></span>Contact</a>
+      <span class="flex-spacer"></span>
+      <a mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg">Login</span></a>
+    </mat-toolbar>
+  </div>
+</div>
+
 
 <div class="container jumbotron"
     fxLayout="row"

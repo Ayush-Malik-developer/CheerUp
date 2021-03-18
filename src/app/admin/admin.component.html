@@ -1,0 +1,72 @@
+<div fxLayout="row"
+     fxLayoutGap="10px"
+     fxLayout.xs="column">
+
+  <div fxFlex="30" class="profile">
+    <mat-card class="card">
+      <div fxLayoutAlign="center center">
+        <img mat-card-image src="/assets/images/Profile.jpg" class="image" alt="Avatar">
+      </div>
+      <mat-card-header fxLayoutAlign="center center">
+        <mat-card-title >
+          <h3>MY PROFILE</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <hr>
+        <p>{{"NAME : "+user.firstname}}{{" "+user.lastname}}</p><hr>
+        <p>{{"EMAIL : "+user.email}}</p><hr>
+        <p>{{"PASSWORD : "+user.password}}</p><hr>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+
+  <div fxFlex fxLayout="column" fxLayoutGap="10px">
+
+    <div fxFlex class="heading" fxLayoutAlign="center center">
+      <h2>HOSTED EVENTS</h2>
+    </div>
+
+    <div fxFlex fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+      <mat-nav-list fxFlex>
+        <mat-list-item style="background: lightcyan;">
+          <h4 style="color: chocolate;">KANNAUJ PREMIER LEAGUE</h4>
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list fxFlex>
+        <mat-list-item style="background: lightcyan;">
+          <h4 style="color: chocolate;">KANNAUJ PREMIER LEAGUE</h4>
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list fxFlex>
+        <mat-list-item style="background: lightcyan;">
+          <h4 style="color: chocolate;">KANNAUJ PREMIER LEAGUE</h4>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+
+    <div fxFlex class="heading" fxLayoutAlign="center center">
+      <h2>WANT TO HOST YOUR EVENT ?</h2>
+    </div>
+
+    <div fxFlex fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+      <mat-nav-list fxFlex>
+        <mat-list-item style="background: lightcyan;">
+          <h4 style="color: chocolate;">TOURNAMENT</h4>
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list fxFlex>
+        <mat-list-item style="background: lightcyan;">
+          <h4 style="color: chocolate;">SERIES</h4>
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list fxFlex>
+        <mat-list-item style="background: lightcyan;">
+          <h4 style="color: chocolate;">SINGLE MATCH</h4>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+
+  </div>
+</div>

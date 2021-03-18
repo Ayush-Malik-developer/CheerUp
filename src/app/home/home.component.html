@@ -14,7 +14,7 @@
   </div>
 
   <div fxFlex class="Content">
-    <mat-nav-list >
+    <mat-nav-list>
       <div *ngFor="let match of matches">
         <mat-list-item *ngIf="conDition(match.status)"  [routerLink]="['/matchdetail',match.id]">
           <img matListAvatar src={{match.image}} >

@@ -25,7 +25,8 @@
   <mat-dialog-actions>
     <span class="flex-spacer"></span>
     <button mat-button mat-dialog-close>Cancel</button>
-    <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="loginform.form.invalid">Login</button>
+    <button type="submit"  mat-button class="background-primary text-floral-white" [disabled]="loginform.form.invalid" [routerLink]="['/admin',user.email,user.password]">
+      Login</button>
   </mat-dialog-actions>
   <br>
   <h3><span style="color: blue;" fxLayoutAlign="center">New User ?</span></h3>

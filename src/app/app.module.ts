@@ -24,11 +24,16 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { TournamentsComponent } from './tournaments/tournaments.component';
 import { ContactComponent } from './contact/contact.component';
 
-import { MatchService } from './services/match.service';
+
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { TournScheduleComponent } from './tourn-schedule/tourn-schedule.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { AdminComponent } from './admin/admin.component';
+
+import { MatchService } from './services/match.service';
+import { TournamentService } from './services/tournament.service';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -44,6 +49,7 @@ import { SignupComponent } from './signup/signup.component';
     TournScheduleComponent,
     LoginComponent,
     SignupComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +68,9 @@ import { SignupComponent } from './signup/signup.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [MatchService],
+  providers: [MatchService,
+    TournamentService,
+    UserService],
   entryComponents: [
     LoginComponent,
     SignupComponent
